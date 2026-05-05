@@ -1,0 +1,64 @@
+# AMG-Colorization default configuration
+# Multi-GAN Image & Video Colorization
+
+# Hardware
+device: "auto"  # auto, cuda, cpu
+
+# Data
+data:
+  dataset: "image_folder"  # image_folder, cifar10, places365
+  train_path: "./data/train"
+  val_path: "./data/val"
+  image_size: [256, 256]   # [height, width]
+  batch_size: 16
+  num_workers: 4
+
+# Preprocessing
+preprocessing:
+  edge_method: "canny"       # canny (Dollar approximation)
+  canny_low: 50
+  canny_high: 150
+  min_region_size: 64        # pixels, discard smaller regions
+
+# Clustering
+clustering:
+  histogram_bins: 256
+  gamma: 0.05                # frequency threshold for dynamic K
+  k_min: 10
+  k_max: 64
+  division_factor: 4         # k = |V| / division_factor
+
+# Generator (U-Net)
+generator:
+  in_channels: 1             # grayscale input
+  out_channels: 3            # RGB output
+  base_features: 64
+
+# Discriminator (PatchGAN)
+discriminator:
+  in_channels: 3             # RGB input (or 4 for concat)
+  base_features: 64
+
+# Training
+training:
+  epochs: 100
+  lr_g: 0.0002
+  lr_d: 0.0002
+  beta1: 0.5
+  beta2: 0.999
+  l1_lambda: 100.0           # weight of L1 loss in generator
+  gan_lambda: 1.0            # weight of adversarial loss
+  save_interval: 10          # epochs
+  log_interval: 100          # iterations
+
+# Inference
+inference:
+  alpha: 0.5                 # harmony blend factor
+  feature_detector: "sift"   # sift or orb
+  match_threshold: 0.7       # Lowe's ratio test threshold
+
+# Output
+output:
+  model_dir: "./checkpoints"
+  result_dir: "./results"
+  log_dir: "./logs"
