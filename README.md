@@ -202,3 +202,15 @@ See `requirements.txt` for pinned versions.
 ## License
 
 This implementation is provided for research purposes.
+
+
+---
+
+## Citation
+
+You are welcome to cite our paper if you find it useful:
+
+Jampour, M., Zare, M. & Javidi, M. Advanced multi-GANs towards near to real image and video colorization. J Ambient Intell Human Comput 14, 12857–12874 (2023). https://doi.org/10.1007/s12652-022-04206-z
+
+
+
